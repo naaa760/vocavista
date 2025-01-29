@@ -121,3 +121,83 @@ body {
   height: 100%;
   background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.9));
 }
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+.gradient-silver {
+  background: linear-gradient(
+    45deg,
+    #f3f4f6 0%,
+    #e5e7eb 25%,
+    #d1d5db 50%,
+    #e5e7eb 75%,
+    #f3f4f6 100%
+  );
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.silver-metallic {
+  background: linear-gradient(
+    125deg,
+    #1a1a1a 0%,
+    #333333 25%,
+    #808080 50%,
+    #333333 75%,
+    #1a1a1a 100%
+  );
+  background-size: 400% 400%;
+  animation: shimmerMetallic 15s ease infinite;
+}
+
+@keyframes shimmerMetallic {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cloud-flow {
+  animation: cloudFloat 20s ease-in-out infinite;
+  filter: blur(100px);
+}
+
+@keyframes cloudFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+    opacity: 0.8;
+  }
+}

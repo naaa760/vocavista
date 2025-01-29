@@ -1,7 +1,7 @@
-// app/resume/_components/entry-form.jsx
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format, parse } from "date-fns";
@@ -22,13 +22,27 @@ import { toast } from "sonner";
 import useFetch from "@/hooks/use-fetch";
 
 const formatDisplayDate = (dateString) => {
-  if (!dateString) return "";
-  const date = parse(dateString, "yyyy-MM", new Date());
-  return format(date, "MMM yyyy");
+  try {
+    if (!dateString) return "";
+    // Parse the date string and handle potential invalid dates
+    const [year, month] = dateString.split("-");
+    const date = new Date(parseInt(year), parseInt(month) - 1);
+
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return "";
+    }
+
+    return format(date, "MMM yyyy");
+  } catch (error) {
+    console.error("Date formatting error:", error);
+    return "";
+  }
 };
 
-export function EntryForm({ type, entries, onChange }) {
+export default function ResumeBuilder({ initialContent, type = "Entry" }) {
   const [isAdding, setIsAdding] = useState(false);
+  const [entries, setEntries] = useState(initialContent || []);
 
   const {
     register,
@@ -58,7 +72,7 @@ export function EntryForm({ type, entries, onChange }) {
       endDate: data.current ? "" : formatDisplayDate(data.endDate),
     };
 
-    onChange([...entries, formattedEntry]);
+    setEntries([...entries, formattedEntry]);
 
     reset();
     setIsAdding(false);
@@ -66,7 +80,7 @@ export function EntryForm({ type, entries, onChange }) {
 
   const handleDelete = (index) => {
     const newEntries = entries.filter((_, i) => i !== index);
-    onChange(newEntries);
+    setEntries(newEntries);
   };
 
   const {
@@ -76,7 +90,6 @@ export function EntryForm({ type, entries, onChange }) {
     error: improveError,
   } = useFetch(improveWithAI);
 
-  // Add this effect to handle the improvement result
   useEffect(() => {
     if (improvedContent && !isImproving) {
       setValue("description", improvedContent);
@@ -87,7 +100,6 @@ export function EntryForm({ type, entries, onChange }) {
     }
   }, [improvedContent, improveError, isImproving, setValue]);
 
-  // Replace handleImproveDescription with this
   const handleImproveDescription = async () => {
     const description = watch("description");
     if (!description) {
@@ -97,8 +109,14 @@ export function EntryForm({ type, entries, onChange }) {
 
     await improveWithAIFn({
       current: description,
-      type: type.toLowerCase(), // 'experience', 'education', or 'project'
+      type: type.toLowerCase(),
     });
+  };
+
+  const getPlaceholder = () => {
+    return type
+      ? `Description of your ${type.toLowerCase()}`
+      : "Enter description";
   };
 
   return (
@@ -209,7 +227,7 @@ export function EntryForm({ type, entries, onChange }) {
 
             <div className="space-y-2">
               <Textarea
-                placeholder={`Description of your ${type.toLowerCase()}`}
+                placeholder={getPlaceholder()}
                 className="h-32"
                 {...register("description")}
                 error={errors.description}

@@ -1,11 +1,27 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { getCoverLetters } from "@/actions/cover-letter";
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CoverLetterList from "./_components/cover-letter-list";
 
-export default async function CoverLetterPage() {
-  const coverLetters = await getCoverLetters();
+const CoverLetterPage = () => {
+  const [coverLetters, setCoverLetters] = useState([]);
+
+  useEffect(() => {
+    const fetchCoverLetters = async () => {
+      try {
+        const data = await getCoverLetters();
+        setCoverLetters(data);
+      } catch (error) {
+        console.error("Error fetching cover letters:", error);
+      }
+    };
+
+    fetchCoverLetters();
+  }, []);
 
   return (
     <div>
@@ -22,4 +38,6 @@ export default async function CoverLetterPage() {
       <CoverLetterList coverLetters={coverLetters} />
     </div>
   );
-}
+};
+
+export default CoverLetterPage;
