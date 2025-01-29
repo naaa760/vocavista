@@ -30,7 +30,7 @@ const HeroSection = () => {
     <section className="w-full pt-36 md:pt-48 pb-10">
       <div className="space-y-6 text-center">
         <div className="space-y-6 mx-auto">
-          <h1 className="text-5xl font-bold md:text-6xl lg:text-7xl xl:text-8xl gradient-title animate-gradient">
+          <h1 className="text-5xl font-bold md:text-6xl lg:text-7xl xl:text-8xl silver-text transition-all duration-300 ease-in-out">
             Your Vocavista for
             <br />
             Professional Success
@@ -65,6 +65,45 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes silverShimmer {
+          0% {
+            background-position: -1000px 0;
+          }
+          100% {
+            background-position: 1000px 0;
+          }
+        }
+
+        .silver-text {
+          background: linear-gradient(
+            to right,
+            #222 20%,
+            #444 40%,
+            #ddd 60%,
+            #444 80%,
+            #222 100%
+          );
+          background-size: 200% auto;
+          color: #000;
+          background-clip: text;
+          text-fill-color: transparent;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: silverShimmer 5s linear infinite;
+          text-shadow: 0 0 5px rgba(255, 255, 255, 0.1),
+            0 0 10px rgba(255, 255, 255, 0.1), 0 0 15px rgba(255, 255, 255, 0.1),
+            0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .silver-text:hover {
+          animation-duration: 1s;
+          transform: scale(1.05);
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+            0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.2),
+            0 0 40px rgba(255, 255, 255, 0.2);
+        }
+      `}</style>
     </section>
   );
 };
