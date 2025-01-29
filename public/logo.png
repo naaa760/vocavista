@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="silverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#333333"/>
+      <stop offset="50%" style="stop-color:#808080"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main background shape -->
+  <path d="M40 20 Q150 0 260 20 Q270 50 260 80 Q150 100 40 80 Q30 50 40 20" 
+        fill="url(#silverGradient)" />
+  
+  <!-- Decorative silver accent lines -->
+  <path d="M45 25 Q150 5 255 25" 
+        fill="none" 
+        stroke="#C0C0C0" 
+        stroke-width="1" 
+        opacity="0.5"/>
+  <path d="M45 75 Q150 95 255 75" 
+        fill="none" 
+        stroke="#C0C0C0" 
+        stroke-width="1" 
+        opacity="0.5"/>
+  
+  <!-- Sound wave pattern -->
+  <path d="M70 50 Q100 30 130 50 Q160 70 190 50 Q220 30 250 50" 
+        fill="none" 
+        stroke="white" 
+        stroke-width="4"
+        stroke-linecap="round">
+    <animate attributeName="d" 
+             dur="3s"
+             repeatCount="indefinite"
+             values="M70 50 Q100 30 130 50 Q160 70 190 50 Q220 30 250 50;
+                     M70 50 Q100 70 130 50 Q160 30 190 50 Q220 70 250 50;
+                     M70 50 Q100 30 130 50 Q160 70 190 50 Q220 30 250 50"/>
+  </path>
+  
+  <!-- Company name -->
+  <text x="150" y="65" 
+        font-family="Arial, sans-serif" 
+        font-size="28" 
+        font-weight="bold"
+        text-anchor="middle" 
+        fill="white">
+    VocaVista
+  </text>
+  
+  <!-- Subtle silver reflection -->
+  <text x="150" y="67" 
+        font-family="Arial, sans-serif" 
+        font-size="28" 
+        font-weight="bold"
+        text-anchor="middle" 
+        fill="#C0C0C0"
+        opacity="0.2">
+    VocaVista
+  </text>
+</svg>
