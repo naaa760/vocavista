@@ -18,7 +18,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
+import { checkUser } from "@/lib/checkUser";
+
 export default async function Header() {
+  await checkUser();
+
   return (
     <header className="fixed top-0 w-full z-50">
       <div className="absolute inset-0 bg-gradient-to-r from-gray-200/20 via-gray-100/10 to-gray-200/20 backdrop-blur-md border-b border-gray-200/10" />
