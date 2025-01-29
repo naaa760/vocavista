@@ -143,7 +143,7 @@ const HeroSection = () => {
             initial={{
               y: 100,
               opacity: 0,
-              rotateY: -180,
+              rotateY: -360,
               scale: 0.5,
             }}
             animate={{
@@ -153,15 +153,26 @@ const HeroSection = () => {
               scale: 1,
             }}
             transition={{
-              duration: 1.5,
+              duration: 3,
               type: "spring",
               bounce: 0.4,
               rotateY: {
-                duration: 1.5,
+                duration: 3.5,
                 type: "spring",
                 bounce: 0.3,
-                times: [0, 0.3, 0.6, 0.8, 1],
-                keyframes: [-180, 40, -20, 10, 0],
+                times: [0, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 1],
+                keyframes: [
+                  -360, // Start
+                  3600, // 10 rotations (360 * 10)
+                  2880, // 8 rotations
+                  1800, // 5 rotations
+                  1080, // 3 rotations
+                  720, // 2 rotations
+                  360, // 1 rotation
+                  180, // Half rotation
+                  45, // Small twist
+                  0, // Final position
+                ],
               },
             }}
           >
