@@ -1,4 +1,4 @@
-VocaVista
+## VocaVista ✨
 
 ![image](https://github.com/user-attachments/assets/91655c2e-c6a0-442c-92e4-85797e5cc76b)
 
